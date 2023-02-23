@@ -50,7 +50,7 @@
                         <select class="form-select" id="inputGroupSelect01" name="kategori" required>
                           <option selected disabled=true  value="">-- Seçiniz --</option>
                           {% for ktg in kategoridata %}
-                            <option value="{{ktg.kategori}}">{{ktg.kategori}}</option>
+                            <option value="{{ktg.id}}">{{ktg.kategori}}</option>
                           {% endfor %}
                         </select>
                     </div>
