@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <title>Anasayfa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <center>
+    <h1>IHA Project</h1>
+    </center>
+    <hr/>
+    <div class="container" >
+        <form method="get" class="pl-5 pr-5">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control col-11" placeholder="Herhangi birşey ara..." aria-label="Search" aria-describedby="button-addon2" >
+                <button class="btn btn-outline-secondary col-1" type="submit">Ara</button>
+            </div>
+        </form>
+        <a href="{% url 'insertIha' %}" class="btn btn-success mt-3 ml-5">Yeni IHA Ekle</a>
+
+        <a href="{% url 'insertCategory' %}" class="btn btn-success mt-3 ml-5">Yeni Kategori Ekle</a>
+
+        <a href="{% url 'logout' %}" class="btn btn-danger mt-3 ml-5">Çıkış Yap</a>
+
+
+
+    </div>
+
+
+
+    
+    <div class="album py-5 bg-light" >
+        <h3 class="text-center">IHA Listesi</h3>
+        <div class="input-group d-flex justify-content-center">
+            <form method="get" class="pl-5 pr-5">
+                <div class="input-group d-flex justify-content-center">
+                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="f">
+                    <option selected disabled=true  value="">-- Seçiniz --</option>
+                    {% for ktg in kategoridata %}
+                        <option value="{{ktg.kategori}}" >{{ktg.kategori}}</option>
+                    {% endfor %}
+                    </select>
+                    <button class="btn btn-outline-secondary" type="submit">Filtrele</button>
+                </div>
+            </form>
+        </div>
+        <div class="container" >
+            <div class="row">
+                
+                {% for post in data %}
+                <div class="card" style="width: 18rem; margin: 1rem;">
+                    <h3 class="card-header bg-transparent border-success text-center">{{post.marka}} <b style="font-size: 14px; color: gray; font-family:courier; font-weight: normal;">{{post.model}}</b></h3>
+                    <div class="card-body ">
+    
+                        <ul class="list-group list-group-flush ">
+                        <li class="list-group-item text-start ">Marka : <b> {{post.marka}}</b> </li>
+
+                        <li class="list-group-item text-start ">Model : <b> {{post.model}}</b> </li>
+                        <li class="list-group-item text-start">Ağırlık : <b> {{post.agirlik}}</b></li>
+                        <li class="list-group-item text-start">Kategori : <b> {{post.kategori}}</b></li>
+                        </ul>
+                        <div class="d-flex justify-content-center ">
+
+                        <a href="Edit/{{post.id}}" class="btn btn-primary mr-3 mt-3 ">Güncelle</a>
+                        <a href="Delete/{{post.id}}" class="btn btn-danger mt-3 "  onclick="return confirm('{{post.marka}} {{post.model}} '+'Silmek İstediğinize Emin misiniz ?')"   >Sil</a>
+                        </div>
+
+                    </div>
+                </div>
+                {% empty %}
+                <p>Aramanız ile ilgili Sonuç Bulunamadı</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>

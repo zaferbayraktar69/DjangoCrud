@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  pgdb:
+    container_name: pgdb_books
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment: 
+      - POSTGRES_DB=BaykarDb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com 
+      PGADMIN_DEFAULT_PASSWORD: 12345
+    ports:
+     - "5050:80"

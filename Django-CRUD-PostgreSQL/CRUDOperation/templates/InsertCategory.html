@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <title>Yeni Kategori</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 class="text-center">Kategori</h1>
+    
+    <h6 class="text-center">Create a new category</h6>
+    <hr/>
+    <div class="container d-flex justify-content-center">
+        <form  method="POST">
+            {% csrf_token %}
+            <table border="0" >
+                <tr>
+                    <input type="text" class="form-control" placeholder="Kategori" name="kategori" required>
+                </tr>
+                <tr>
+                    <td> 
+                        <button type="submit" class="btn btn-success" value="Ekle">Ekle</button>
+                    </td>
+                    <td>{% if messages %}
+                        {% for mess in messages %}
+                        <b style="color: green;" >{{mess}}</b>
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'showIha' %}" class="btn btn-primary mr-3 mt-3 ">Anasayfa</a>
+            </div>  
+
+        </form>
+    </div>
+</body>

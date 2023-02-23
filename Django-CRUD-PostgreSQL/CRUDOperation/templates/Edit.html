@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <title>Başlık</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <h1 class="text-center" >IHA Project</h1>
+
+    <h6 class="text-center" >IHA Update</h6>
+    <hr/>
+    <div class="container d-flex justify-content-center">
+        <form method="POST" action="/Update/{{IhaModel.id}}">
+            {% csrf_token %}
+            <table border="0">
+                <tr>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-4" id="basic-addon1">ID </span>
+                        <input type="text" class="form-control col-8" value="{{IhaModel.id}}" readonly >
+                    </div>
+                </tr>
+                <tr>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-4" id="basic-addon1">Marka </span>
+                        <input type="text" class="form-control col-8" placeholder="Marka" name="marka" value="{{IhaModel.marka}}" required>
+                    </div>
+                </tr>
+                <tr>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-4" id="basic-addon1">Model </span>
+                        <input type="text" class="form-control col-8" placeholder="Model" name="model" value="{{IhaModel.model}}" required>
+                    </div>
+                
+                </tr>
+
+            
+                <tr>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-4" id="basic-addon1">Ağırlık </span>
+                        <input type="text" class="form-control col-8" placeholder="Ağırlık" name="agirlik" value="{{IhaModel.agirlik}}" required>
+                    </div>
+                </tr>
+                <tr>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-4" id="basic-addon1">Kategori </span>
+                        <select class="form-select" id="inputGroupSelect01" name="kategori" required>
+                          <option selected disabled=true  value="">-- Seçiniz --</option>
+                          {% for ktg in kategoridata %}
+                            <option value="{{ktg.kategori}}">{{ktg.kategori}}</option>
+                          {% endfor %}
+                        </select>
+                    </div>
+                </tr>
+
+                <tr>
+                    <td><button type="submit" class="btn btn-success" value="Güncelle">Güncelle</button></td>
+                    
+                    <td>{% if messages %}
+                        {% for mess in messages %}
+                        <b style="color: green;" >{{mess}}</b>
+                        {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+
+            </table>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'showIha' %}" class="btn btn-primary mr-3 mt-3 ">Anasayfa</a>
+            </div>  
+        </form>
+    </div>
+</body>
